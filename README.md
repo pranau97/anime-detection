@@ -12,7 +12,7 @@ An OpenCV based system that uses a Haar Cascade Classifier to detect facial feat
 
 * googleimagesdownload (Install using pip)
 
-* saucenao (Install from [here](https://github.com/DaRealFreak/saucenao/).)
+* saucenao (Install from [here](https://github.com/DaRealFreak/saucenao/))
 
 ## Training the classifier
 

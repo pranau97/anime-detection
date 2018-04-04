@@ -41,24 +41,29 @@ def detect_characters(img_path):
             flag = 1
 
             api_data = json.load(open('api_key.json'))
-            sauce = SauceNao('', databases=999, minimum_similarity=65, combine_api_types=False,
+            sauce = SauceNao("", databases=999, minimum_similarity=30, combine_api_types=False,
                              api_key=api_data['saucenao_key'],
-                             exclude_categories='', move_to_categories=False, output_type=SauceNao.API_HTML_TYPE, start_file=None,
-                             log_level=logging.ERROR, title_minimum_similarity=90)
+                             exclude_categories='', move_to_categories=False, output_type=SauceNao.API_HTML_TYPE, start_file='',
+                             log_level=logging.ERROR, title_minimum_similarity=30)
 
             data = {
-                "Records": [{"keywords": CHARACTER_DB[str(file)], "limit": 5, "print_urls": True}]
+                "Records": [{"keywords": CHARACTER_DB[str(file)], "limit": 20, "print_urls": False}]
             }
 
-            results = sauce.check_file(img_path)
+            print("Uploading image...")
 
+            results = sauce.check_file(img_path)
+            print("Evaluating image...\n")
             print(results)
-            print("Evaluating image...")
+            print("\n")
+            print("Getting similar images...")
 
             with open('config.json', 'w') as outfile:
                 json.dump(data, outfile)
 
             os.system("googleimagesdownload -cf config.json > /dev/null")
+
+            print("Found 20 images similar in content to given image. Check the downloads folder for the downloaded images.")
 
         if flag == 1:
             break
