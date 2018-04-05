@@ -7,3 +7,6 @@ api_key.json
 
 # Downloads folder
 downloads/
+
+# Search config
+config.json
